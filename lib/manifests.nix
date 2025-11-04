@@ -84,7 +84,8 @@ let
           (
             pkgName:
             {
-              u ? null, # Version appears in URL
+              # Version appears in URL
+              u ? null,
               ...
             }@hashes:
             {

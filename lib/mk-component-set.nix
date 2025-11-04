@@ -15,8 +15,8 @@
   toRustTarget,
   removeNulls,
 }:
-# Release version of the whole set.
 {
+  # Release version of the whole set.
   version,
   # The host platform of this set.
   platform,
@@ -122,7 +122,8 @@ let
         }
         if [[ -e "$out/etc" ]]; then
           handleEtc "$out/etc/bash_completion.d" "$out/share/bash-completion/completions"
-          rmdir $out/etc || { echo "Installer tries to install to /etc: $(ls $out/etc)"; exit 1; }
+          # Remove if empty. Skip if produced `/etc/target-spec-json-schema.json`.
+          rmdir --ignore-fail-on-non-empty $out/etc
         fi
       '';
 
